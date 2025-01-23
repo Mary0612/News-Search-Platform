@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang = "zh">
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>Searching News</title>
+    <style>
+        fieldset{ margin: 20px 20px; }
+        legend{ padding: 0px 10px; }
+        input{ margin: 10px 0px 10px 10px; }
+        label{ margin: 10px 0px; }
+    </style>
+</head>
+<body>
+    <form action = "/submit" id = "form" method = "get">
+        <fieldset>
+            <legend>查詢方式</legend>
+            <div>
+                <input type = "radio" id = "keyword" name = "search-method" value ="keyword" />
+                <label style = "margin: 10px 45px 10px 0px;" for = "keyword">以關鍵字查詢</label>
+                    <input type = "text" id = "keyword-input" name = "keyword" size = "20" disabled />
+            </div>
+            <div id = "group-category">
+                <input type = "radio" id = "category" name = "search-method" value = "category" />
+                <label style = "margin: 10px 30px 10px 0px;" for = "category">以新聞類型查詢</label>
+                    <input type = "checkbox" id = "social" name = "method" value = "social" disabled />
+                    <label style = "margin: 10px 10px 10px 0px;"　for = "social">社會</label>
+                    <input type = "checkbox" id = "international" name = "method" value = "international" disabled />
+                    <label style = "margin: 10px 10px 10px 0px;" for = "international">國際與政治</label>
+                    <input type = "checkbox" id = "life" name = "method" value = "life" disabled />
+                    <label style = "margin: 10px 10px 10px 0px;" for = "life">生活</label>
+                    <input type = "checkbox" id = "sports" name = "method" value = "sports" disabled />
+                    <label style = "margin: 10px 10px 10px 0px;" for = "sports">運動</label>
+                    <input type = "checkbox" id = "entertainment" name = "method" value = "entertainment" disabled />
+                    <label style = "margin: 10px 10px 10px 0px;" for = "entertainment">娛樂</label>
+                    <input type = "checkbox" id = "finance" name = "method" value = "finance" disabled />
+                    <label style = "margin: 10px 10px 10px 0px;" for = "finance">產業與金融</label>
+            </div>
+        </fieldset>
+        <fieldset id = "group-website">
+            <legend>指定新聞網站</legend>
+            <div>
+                <input type = "checkbox" id = "udn" name = "search-website" value = "udn"/>
+                <label for = "udn">聯合新聞網</label>
+            </div>
+            <div>
+                <input type = "checkbox" id = "yahoo" name = "search-website" value = "yahoo"/>
+                <label for = "yahoo">Yahoo新聞</label>
+            </div>
+            <div>
+                <input type = "checkbox" id = "cna" name = "search-website" value = "cna"/>
+                <label for = "cna">中央社</label>
+            </div>
+            <div>
+                <input type = "checkbox" id = "ltn" name = "search-website" value = "ltn"/>
+                <label for = "ltn">自由時報</label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>指定日期區間</legend>
+            <div>
+                <input type = "radio" id = "default-interval" name = "search-date" value = "default-interval" />
+                <label for = "default-interval">不指定（預設一個星期）</label>
+            </div>
+            <div>
+                <input type = "radio" id = "set-interval" name = "search-date" value = "set-interval" />
+                <label for = "set-interval">指定</label>
+                <input style = "margin: 10px 0px;" type = "date" id = "interval-start" name = "date-start" value = {{date[0]}} min = "2024-01-01" max = {{date[1]}} disabled />
+                <label for = "set-interval">至</label>
+                <input style = "margin: 10px 0px;" type = "date" id = "interval-end" name = "date-end" value = {{date[1]}} min = "2024-01-01" max = {{date[1]}} disabled />
+            </div>
+        </fieldset>
+        <p><input style = "margin: 10px 20px; padding: 10px 50px" type = "submit" id = "submit" value = "查詢" /></p>
+    </form>
+    
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'check.js') }}" ></script>
+</body>
+</html>

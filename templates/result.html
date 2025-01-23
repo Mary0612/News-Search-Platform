@@ -1,1 +1,45 @@
-
+<!DOCTYPE html>
+<html lang = "zh">
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>News Results</title>
+    <style>
+        fieldset{ margin: 20px 20px; }
+        table{ margin: 20px 20px; border-collapse: collapse; }
+        legend{ padding: 0px 10px; }
+        p{ margin: 10px 10px; }
+        th{ padding: 20px 40px; border-bottom: 2px solid rgba(0, 0, 0, 0.5); }
+        td{ padding: 10px 40px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); text-align: center; }
+        tr:hover td{ background-color: rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>搜尋條件</legend>
+            <p>{{ condition["result_1"] }} </p>
+            <p>{{ condition["result_2"] }}</p>
+            <p>{{ condition["result_3"] }}</p>
+    </fieldset>       
+    <table>
+        <tr>
+            <th style = "width: 70vw;">標題</th>
+            <th style = "width: 14vw;">時間</th>
+            <th style = "width: 8vw;">類型</th>
+            <th style = "width: 8vw;">來源</th>
+        </tr>
+        {% for item in result_data %}
+        <tr>
+            <td style = "width: 70vw;"><a href = {{item["url"]}} target="_blank">{{ item["title"] }}</td>
+            <td style = "width: 14vw;">{{ item["date"] }}</td>
+            <td style = "width: 8vw;">{{ item["category"] }}</td>
+            <td style = "width: 8vw;">{{ item["website"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form action = "/search" method = "get">
+        <p><input style = "margin: 0px 50vw 100px; padding: 10px 50px" type = "submit" value = "重新查詢" /></p>
+    </form>
+</body>
+</html>
